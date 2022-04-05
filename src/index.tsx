@@ -43,7 +43,7 @@ const renderStackRow = (items: Item[]) => {
     const itemType = items[0].type
     return (
         <tr key={itemType}>
-            <td className="text-white text-right -rotate-90 truncate">
+            <td className="p-4 text-white text-center" style={{ writingMode: "sideways-lr" }}>
                 {itemType}
             </td>
             <td className="p-4 align-top max-w-md">{renderStackItemsbyTypeAndStatus(items, "use")}</td>
@@ -70,11 +70,11 @@ export type { Item } from './stack'
 export const Stack = ({ items }: Props) => {
     const stackMap = items2map(items)
     return (
-        <div className="bg-slate-50">
-            <table className="w-full table-auto rounded bg-gradient-to-r from-green-700 to-lime-100">
+        <div>
+            <table className="w-full table-fixed rounded bg-gradient-to-r from-green-700 to-lime-100">
                 <thead >
                     <tr className="text-white font-medium text-lg">
-                        <td className="p-10"></td>
+                        <td className="w-10"></td>
                         <td>Use</td>
                         <td>Investigate</td>
                         <td>Deprecated</td>

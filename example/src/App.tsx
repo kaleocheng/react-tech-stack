@@ -5,13 +5,13 @@ const items: Item[] = [
     "name": "Redis",
     "logo": "/images/logos/redis.svg",
     "status": "use",
-    "type": "Middleware/Database"
+    "type": "Database/Middleware"
   },
   {
     "name": "PostgreSQL",
     "logo": "/images/logos/postgresql.svg",
     "status": "use",
-    "type": "Middleware/Database"
+    "type": "Database/Middleware"
   }
 ]
 
