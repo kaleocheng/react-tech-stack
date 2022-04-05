@@ -1,7 +1,6 @@
 {
   "name": "react-tech-stack",
   "version": "0.1.0",
-  "private": true,
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.3",
     "@rollup/plugin-node-resolve": "^13.1.3",
