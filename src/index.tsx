@@ -1,10 +1,16 @@
 import './index.css'
 import { items2map, Item, StackMapbyType } from './stack'
 
+
 interface Props {
     items: Item[]
     headers?: string[]
+    bgColorFrom?: string
+    bgColorTo?: string
+    headerColor?: string,
+    typeColor?: string,
 }
+
 
 const renderStackItemCard = (item: Item) => {
     let logo = (<div></div>)
@@ -51,14 +57,14 @@ const renderStackItemsbyTypeAndStatus = (items: Item[], status: string) => {
     )
 }
 
-const renderStackRow = (items: Item[], headers: string[]) => {
+const renderStackRow = (items: Item[], headers: string[], typeColor: string) => {
     if (items.length == 0) {
         return (<tr></tr>)
     }
     const itemType = items[0].type
     return (
         <tr key={itemType}>
-            <td className="p-4 text-white text-center" style={{ writingMode: "sideways-lr" }}>
+            <td className="p-4 text-center" style={{ writingMode: "sideways-lr", color: typeColor }}>
                 {itemType}
             </td>
             {headers.map(x => {
@@ -69,30 +75,28 @@ const renderStackRow = (items: Item[], headers: string[]) => {
 }
 
 const renderStackRows = (stackMap: StackMapbyType, headers: string[]) => {
-    const stackTypes = Object.keys(stackMap)
-    return (
-        <tbody>
-            {
-                stackTypes.map(type => {
-                    return renderStackRow(stackMap[type], headers)
-                })
-            }
-        </tbody>
-    )
+
 }
 
 export type { Item } from './stack'
-export const Stack = (props: Props) => {
-    const stackMap = items2map(props.items)
-    let headers = ['use', 'investigate', 'deprecated']
-    if (props.headers) {
-        headers = props.headers
-    }
+export const Stack = ({
+    items,
+    headers = ['use', 'investigate', 'deprecated'],
+    bgColorFrom = '#15803D',
+    bgColorTo = '#ECFCCB',
+    headerColor = '#FFFFFF',
+    typeColor = '#FFFFFF'
+}: Props) => {
+    const stackMap = items2map(items)
+    const stackTypes = Object.keys(stackMap)
+
     return (
         <div>
-            <table className="w-full table-fixed rounded bg-gradient-to-r from-green-700 to-lime-100">
+            <table className="w-full table-fixed rounded bg-gradient-to-r"
+                style={{ backgroundImage: `linear-gradient(to right, ${bgColorFrom}, ${bgColorTo})` }}
+            >
                 <thead >
-                    <tr className="text-white font-medium text-lg">
+                    <tr className="font-medium text-lg" style={{ color: headerColor }}>
                         <td className="w-10"></td>
                         {headers.map(x => {
                             return <td key={x}>
@@ -101,7 +105,13 @@ export const Stack = (props: Props) => {
                         })}
                     </tr>
                 </thead>
-                {renderStackRows(stackMap, headers)}
+                <tbody>
+                    {
+                        stackTypes.map(type => {
+                            return renderStackRow(stackMap[type], headers, typeColor)
+                        })
+                    }
+                </tbody>
             </table>
         </div >
     )

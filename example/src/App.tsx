@@ -15,7 +15,7 @@ const items: Item[] = [
 ]
 
 const App = () => {
-  return <Stack items={items} />
+  return <Stack items={items} bgColorFrom={'#14532D'}/>
 }
 
 export default App
