@@ -92,7 +92,7 @@ export const Stack = ({
 
     return (
         <div>
-            <table className="w-full table-fixed rounded bg-gradient-to-r"
+            <table className="rounded bg-gradient-to-r"
                 style={{ backgroundImage: `linear-gradient(to right, ${bgColorFrom}, ${bgColorTo})` }}
             >
                 <thead >
