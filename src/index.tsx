@@ -1,8 +1,9 @@
 import './index.css'
-import { items2map, Item, ItemStatus, StackMapbyType } from './stack'
+import { items2map, Item, StackMapbyType } from './stack'
 
 interface Props {
     items: Item[]
+    headers?: string[]
 }
 
 const renderStackItemCard = (item: Item) => {
@@ -37,7 +38,7 @@ const renderStackItem = (item: Item) => {
     )
 }
 
-const renderStackItemsbyTypeAndStatus = (items: Item[], status: ItemStatus) => {
+const renderStackItemsbyTypeAndStatus = (items: Item[], status: string) => {
     let key = `${items[0].type}-${items[0].status}`
     return (
         <div key={key} className="flex flex-wrap">
@@ -50,7 +51,7 @@ const renderStackItemsbyTypeAndStatus = (items: Item[], status: ItemStatus) => {
     )
 }
 
-const renderStackRow = (items: Item[]) => {
+const renderStackRow = (items: Item[], headers: string[]) => {
     if (items.length == 0) {
         return (<tr></tr>)
     }
@@ -60,20 +61,20 @@ const renderStackRow = (items: Item[]) => {
             <td className="p-4 text-white text-center" style={{ writingMode: "sideways-lr" }}>
                 {itemType}
             </td>
-            <td className="p-4 align-top max-w-md">{renderStackItemsbyTypeAndStatus(items, "use")}</td>
-            <td className="p-4 align-top max-w-sm">{renderStackItemsbyTypeAndStatus(items, "investigate")}</td>
-            <td className="p-4 align-top contrast-50">{renderStackItemsbyTypeAndStatus(items, "deprecated")}</td>
+            {headers.map(x => {
+                return <td key={x} className="p-4 align-top">{renderStackItemsbyTypeAndStatus(items, x)}</td>
+            })}
         </tr >
     )
 }
 
-const renderStackRows = (stackMap: StackMapbyType) => {
+const renderStackRows = (stackMap: StackMapbyType, headers: string[]) => {
     const stackTypes = Object.keys(stackMap)
     return (
         <tbody>
             {
                 stackTypes.map(type => {
-                    return renderStackRow(stackMap[type])
+                    return renderStackRow(stackMap[type], headers)
                 })
             }
         </tbody>
@@ -81,20 +82,26 @@ const renderStackRows = (stackMap: StackMapbyType) => {
 }
 
 export type { Item } from './stack'
-export const Stack = ({ items }: Props) => {
-    const stackMap = items2map(items)
+export const Stack = (props: Props) => {
+    const stackMap = items2map(props.items)
+    let headers = ['use', 'investigate', 'deprecated']
+    if (props.headers) {
+        headers = props.headers
+    }
     return (
         <div>
             <table className="w-full table-fixed rounded bg-gradient-to-r from-green-700 to-lime-100">
                 <thead >
                     <tr className="text-white font-medium text-lg">
                         <td className="w-10"></td>
-                        <td>Use</td>
-                        <td>Investigate</td>
-                        <td>Deprecated</td>
+                        {headers.map(x => {
+                            return <td key={x}>
+                                {x.charAt(0).toUpperCase() + x.slice(1)}
+                            </td>
+                        })}
                     </tr>
                 </thead>
-                {renderStackRows(stackMap)}
+                {renderStackRows(stackMap, headers)}
             </table>
         </div >
     )

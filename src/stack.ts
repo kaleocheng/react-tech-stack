@@ -1,9 +1,7 @@
-export type ItemStatus = 'use' | 'investigate' | 'deprecated'
-
 export interface Item {
     name: string
     logo?: string
-    status: ItemStatus
+    status: string
     type: string
     url?: string
 }
