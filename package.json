@@ -1,5 +1,5 @@
 {
-  "name": "react-library-boilerplate",
+  "name": "react-tech-stack",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -23,6 +23,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0",
     "rollup": "^2.70.1",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-dts": "^4.2.0",
     "rollup-plugin-import-css": "^3.0.3",
     "rollup-plugin-peer-deps-external": "^2.2.4",
