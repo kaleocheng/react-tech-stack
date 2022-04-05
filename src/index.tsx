@@ -18,9 +18,9 @@ const renderStackItemCard = (item: Item) => {
         logo = <div className="w-8 h-8"><img src={item.logo}></img></div>
     }
     return (
-        <div className="flex flex-wrap space-x-2 > * + *">
+        <div className="md:flex md:flex-wrap grid place-items-center">
             {logo}
-            <div className="self-center text-neutral-800">{item.name}</div>
+            <div className="text-neutral-800 px-1">{item.name}</div>
         </div>
     )
 }
