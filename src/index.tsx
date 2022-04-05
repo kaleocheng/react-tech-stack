@@ -5,20 +5,34 @@ interface Props {
     items: Item[]
 }
 
+const renderStackItemCard = (item: Item) => {
+    let logo = (<div></div>)
+    if (item.logo) {
+        logo = <div className="w-8 h-8"><img src={item.logo}></img></div>
+    }
+    return (
+        <div className="flex flex-wrap ">
+            {logo}
+            <div className="self-center text-neutral-800">{item.name}</div>
+        </div>
+    )
+}
+
 const renderStackItem = (item: Item) => {
     if (item.url) {
         return (
-            <a key={item.name} href={item.url} className="flex flex-wrap shadow-md transition ease-in-out duration-300 hover:-translate-y-1 hover:shadow-xl rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *">
-                <div className="w-8 h-8"><img src={item.logo}></img></div>
-                <div className="self-center">{item.name}</div>
+            <a key={item.name} href={item.url} className="shadow-md \
+                    transition ease-in-out duration-300 \
+                    hover:-translate-y-1 hover:shadow-xl \
+                    rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *">
+                {renderStackItemCard(item)}
             </a>
         )
     }
 
     return (
-        <div key={item.name} className="flex flex-wrap rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *">
-            <div className="w-8 h-8"><img src={item.logo}></img></div>
-            <div className="self-center">{item.name}</div>
+        <div key={item.name} className="rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *">
+            {renderStackItemCard(item)}
         </div>
     )
 }

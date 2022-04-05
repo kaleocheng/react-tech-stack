@@ -2,7 +2,7 @@ export type ItemStatus = 'use' | 'investigate' | 'deprecated'
 
 export interface Item {
     name: string
-    logo: string
+    logo?: string
     status: ItemStatus
     type: string
     url?: string

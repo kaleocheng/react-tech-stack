@@ -9,7 +9,6 @@ const items: Item[] = [
   },
   {
     "name": "PostgreSQL",
-    "logo": "/images/logos/postgresql.svg",
     "status": "use",
     "type": "Database/Middleware"
   }
