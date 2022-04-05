@@ -97,9 +97,9 @@ export const Stack = ({
             >
                 <thead >
                     <tr className="font-medium text-lg" style={{ color: headerColor }}>
-                        <td className="w-10"></td>
+                        <td className="w-10 pt-4"></td>
                         {headers.map(x => {
-                            return <td key={x}>
+                            return <td key={x} className="pt-4">
                                 {x.charAt(0).toUpperCase() + x.slice(1)}
                             </td>
                         })}
