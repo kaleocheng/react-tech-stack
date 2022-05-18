@@ -20,25 +20,36 @@ const renderStackItemCard = (item: Item) => {
     return (
         <div className="md:flex md:flex-wrap grid place-items-center">
             {logo}
-            <div className="text-neutral-800 px-1">{item.name}</div>
+            <div className="px-1">{item.name}</div>
         </div>
     )
 }
 
 const renderStackItem = (item: Item) => {
+    let color = '#262626'
+    let bgColor = '#FFFFFF'
+    if (item.color) {
+        color = item.color
+    }
+    if (item.bgColor) {
+        bgColor = item.bgColor
+    }
+
     if (item.url) {
         return (
             <a key={item.name} href={item.url} className="shadow-md \
                     transition ease-in-out duration-300 \
                     hover:-translate-y-1 hover:shadow-xl \
-                    rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *">
+                    rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *"
+                style={{ color: color, backgroundColor: bgColor }}>
                 {renderStackItemCard(item)}
             </a>
         )
     }
 
     return (
-        <div key={item.name} className="rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *">
+        <div key={item.name} className="rounded bg-white max-w-xs p-4 mb-4 mr-4 space-x-2 > * + *"
+            style={{ color: color, backgroundColor: bgColor }}>
             {renderStackItemCard(item)}
         </div>
     )

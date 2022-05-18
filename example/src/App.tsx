@@ -3,13 +3,16 @@ import { Stack, Item } from 'react-tech-stack'
 const items: Item[] = [
   {
     "name": "Redis",
-    "logo": "/images/logos/redis.svg",
+    "logo": "https://www.vectorlogo.zone/logos/redis/redis-icon.svg",
     "status": "use",
-    "type": "Database/Middleware"
+    "type": "Database/Middleware",
+    "color": "#ffffff",
+    "bgColor": "#c92d39"
   },
   {
     "name": "PostgreSQL",
-    "status": "use",
+    "logo": "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg",
+    "status": "investigate",
     "type": "Database/Middleware"
   }
 ]

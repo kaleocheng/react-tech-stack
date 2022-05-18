@@ -4,6 +4,8 @@ export interface Item {
     status: string
     type: string
     url?: string
+    bgColor?: string
+    color?: string
 }
 
 export interface StackMapbyType {
